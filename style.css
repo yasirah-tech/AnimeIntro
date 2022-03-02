@@ -16,6 +16,13 @@ p {
   -webkit-box-orient: vertical;
 }
 
+#anime-clicked-synopsis{
+  width: 500px;
+  overflow: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 0;
+  -webkit-box-orient: vertical;
+}
 .img-size {
   background-color: black;
   height: 450px;
@@ -434,6 +441,77 @@ p {
     height: 90%;
   }
 
+  .main__img--container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .main__img--card {
+    height: 425px;
+    width: 425px;
+  }
+
+  .main__content {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .main__content h1 {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .main__content h2 {
+    font-size: 3rem;
+  }
+
+  .main__content p {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+}
+
+#SM-button{
+  display: none;
+}
+/* implementation for media queries */
+@media screen and (max-width: 480px) {
+  body{
+    width:100%
+  }
+  .main__container {
+    display: grid;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    height: 90%;
+    
+  }
+
+  #anime-clicked-synopsis{
+    width: 100%;
+  }
+
+  #FS-button{
+    display: none
+  }
+
+  #SM-button{
+    display: block;
+  }
+  /* #animeInfo{
+    padding: 70px;
+    display: block;
+  }
+  #information{
+    overflow-x: hidden;
+    margin:0;
+    
+  }
+   */
+   
   .main__img--container {
     display: flex;
     justify-content: center;

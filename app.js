@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const menuLinks = document.querySelector(".navbar__menu");
   const navLogo = document.querySelector("#navbar__logo");
   const cardWrapper = document.getElementById("wrapper");
+  const animeInfo = document.getElementById("animeInfo");
 
   // Display Mobile Menu
   const mobileMenu = () => {
@@ -15,22 +16,39 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(`https://api.jikan.moe/v4/top/anime`)
     .then((response) => response.json())
     .then((results) => {
-      console.log(results.data[0].images.jpg);
       for (let i = 0; i < 10; i++) {
         let anime = results.data[i];
         let cardDetails = document.createElement("div");
-        cardDetails.innerHTML = `
-            <h5 id="possible-titles">${anime.title}</h5>
-            <div class="img-div"><img class="img-size" src="${anime.images.jpg.large_image_url}" alt="" /></div>
-            <p id="brief-descriptions">${anime.synopsis}</p>
-            <div class="learn_more_btn"><button>LEARN MORE</button></div>
-      `;
-        cardWrapper.append(cardDetails);
+        let title = document.createElement("h5");
+        title.innerHTML = `${anime.title}`;
+        let img = document.createElement("img");
+        img.src = `${anime.images.jpg.large_image_url}`;
+        let para = document.createElement("p");
+        para.innerHTML = `${anime.synopsis}`;
+        let button = document.createElement("button");
+        button.type = button;
+        button.innerHTML = "LEARN MORE";
+        img.className = "img-size";
+        cardDetails.append(title);
+        cardDetails.append(img);
+        cardDetails.append(para);
+        cardDetails.append(button);
         cardDetails.style.margin = "10px";
+        cardWrapper.append(cardDetails);
+        button.addEventListener("click", () => {
+         let hero = document.getElementById("anime")
+         let animeName = document.getElementById("learMore-of-anime")
+         let animeSynopsis = document.getElementById("anime-clicked-synopsis")
+          animeInfo.style.display = "block";
+          animeName.innerHTML = anime.title;
+          animeSynopsis.innerHTML = anime.synopsis
+
+        })
       }
     })
     .catch((error) => alert(error));
-
+    let documentBody = document.getElementsByTagName("body")
+  
   // Show active menu when scrolling
   const highlightMenu = () => {
     const elem = document.querySelector(".highlight");
@@ -40,6 +58,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let scrollPos = window.scrollY;
 
     // adds 'highlight' class to my menu items
+   
+
     if (window.innerWidth > 960 && scrollPos < 600) {
       homeMenu.classList.add("highlight");
       aboutMenu.classList.remove("highlight");
