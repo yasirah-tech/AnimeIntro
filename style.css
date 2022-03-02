@@ -6,19 +6,19 @@
   scroll-behavior: smooth;
 }
 
-.img-div {
-  display: flex;
-  height:200px;
-  width: 300px;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: start;
-  background: lightgray;
+p {
+  overflow: hidden;
+  width:300px;
+  display: -webkit-box;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 }
 
 .img-size {
   background-color: black;
-  height: 200px;
+  height: 450px;
   width: 100%;
   border-radius: 5px;
 }
@@ -224,7 +224,7 @@
 .hero {
   background: #000000;
   background: linear-gradient(to right, #161616, #000000);
-  padding: 200px 0;
+  padding-top: 50px;
 }
 
 .hero__container {
@@ -516,10 +516,22 @@
   font-size: 2.5rem;
 }
 
-.card-wrapper {
-  display: grid;
+#wrapper {
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  justify-content: stretch;
+  /* display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: 1fr; */
+}
+
+#wrapper > * {
+  flex-basis: 20rem;
+  flex-shrink: 0;
 }
 
 .card-details {
@@ -598,16 +610,20 @@
   cursor: pointer;
 }
 
+#animeInfo {
+  display: none;
+}
+
 @media screen and (max-width: 1300px) {
-  .card-wrapper {
+  /* #wrapper {
     grid-template-columns: 1fr 1fr;
-  }
+  } */
 }
 
 @media screen and (max-width: 768px) {
-  .card-wrapper {
+  /* #wrapper {
     grid-template-columns: 1fr;
-  }
+  } */
 }
 
 /* Footer
