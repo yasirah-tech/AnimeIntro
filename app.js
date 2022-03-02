@@ -27,6 +27,7 @@ fetch(
     console.log("fetch")
     console.log(data.data)
     data.data.forEach(element => {
+      
       console.log(element.title)
       let pTags 
     });
