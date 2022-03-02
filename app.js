@@ -4,12 +4,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const navLogo = document.querySelector("#navbar__logo");
   const cardWrapper = document.getElementById("wrapper");
   const animeInfo = document.getElementById("animeInfo");
+  const iframe = document.getElementById("video");
+  const recommended = document.getElementById("recommendation");
+  const top10Ani = document.getElementById("top-10-anime");
+  const heroContainer = document.getElementById("hero__container");
+  const recommendHolder = document.getElementById("recommendWrapper");
 
   // Display Mobile Menu
   const mobileMenu = () => {
     menu.classList.toggle("is-active");
     menuLinks.classList.toggle("active");
   };
+
+  let top10 = true;
+  if (top10) {
+    recommendHolder.style.display = "none";
+  }
 
   menu.addEventListener("click", mobileMenu);
 
@@ -27,28 +37,72 @@ document.addEventListener("DOMContentLoaded", function () {
         para.innerHTML = `${anime.synopsis}`;
         let button = document.createElement("button");
         button.type = button;
+        let anchor = document.createElement("a");
         button.innerHTML = "LEARN MORE";
         img.className = "img-size";
         cardDetails.append(title);
         cardDetails.append(img);
         cardDetails.append(para);
-        cardDetails.append(button);
+        anchor.append(button);
+        cardDetails.append(anchor);
         cardDetails.style.margin = "10px";
         cardWrapper.append(cardDetails);
         button.addEventListener("click", () => {
-         let hero = document.getElementById("anime")
-         let animeName = document.getElementById("learMore-of-anime")
-         let animeSynopsis = document.getElementById("anime-clicked-synopsis")
+          let animeName = document.getElementById("learMore-of-anime");
+          let animeSynopsis = document.getElementById("anime-clicked-synopsis");
           animeInfo.style.display = "block";
+          anchor.href = "#anime-clicked-synopsis";
           animeName.innerHTML = anime.title;
-          animeSynopsis.innerHTML = anime.synopsis
-
-        })
+          animeSynopsis.innerHTML = anime.synopsis;
+          iframe.src = anime.trailer.embed_url;
+        });
       }
     })
     .catch((error) => alert(error));
-    let documentBody = document.getElementsByTagName("body")
-  
+  // let documentBody = document.getElementsByTagName("body")
+
+  recommended.addEventListener("click", () => {
+    if (top10) {
+      top10 = false;
+      recommended.innerHTML = "Top 10 Anime";
+      top10Ani.innerHTML = "Recommended Anime Films";
+      cardWrapper.style.display = "none";
+      recommendHolder.style.display = "flex";
+      fetch("https://api.jikan.moe/v4/recommendations/anime")
+        .then((response) => response.json())
+        .then((results) => {
+          for (let i = 0; i < 25; i++) {
+            let anime = results.data[i].entry[1];
+            let cardDetails = document.createElement("div");
+            let title = document.createElement("h3");
+            title.innerHTML = `${anime.title}`;
+            let img = document.createElement("img");
+            img.src = `${anime.images.jpg.large_image_url}`;
+            let button = document.createElement("button");
+            button.type = button;
+            let anchor = document.createElement("a");
+            button.innerHTML = "LEARN MORE";
+            img.className = "img-size";
+            cardDetails.append(img);
+            cardDetails.append(title);
+            anchor.append(button);
+            cardDetails.append(anchor);
+            cardDetails.style.margin = "10px";
+            recommendHolder.append(cardDetails);
+            button.addEventListener("click", () => {
+              anchor.target = "blank"
+              anchor.href = anime.url;
+            });
+          }
+        });
+    } else {
+      top10 = true;
+      recommended.innerHTML = "Recommended";
+      recommendHolder.style.display = "none";
+      cardWrapper.style.display = "flex";
+    }
+  });
+
   // Show active menu when scrolling
   const highlightMenu = () => {
     const elem = document.querySelector(".highlight");
@@ -58,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let scrollPos = window.scrollY;
 
     // adds 'highlight' class to my menu items
-   
 
     if (window.innerWidth > 960 && scrollPos < 600) {
       homeMenu.classList.add("highlight");

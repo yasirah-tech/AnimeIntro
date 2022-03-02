@@ -33,7 +33,7 @@
             <a href="#about" class="navbar__links" id="about-page">About</a>
           </li>
           <li class="navbar__btn">
-            <a href="#sign-up" class="button" id="signup">Recommended</a>
+            <a href="#recommendation" class="button" id="recommendation">Recommended</a>
           </li>
         </ul>
       </div>
@@ -42,8 +42,10 @@
     <div class="hero" id="anime">
       <h1 id="top-10-anime">TOP 10 ANIME FILMS</h1>
       <div class="hero__container">
-        <div class="card-wrapper" id ="wrapper">
-        </div>
+        <div class="card-wrapper" id ="wrapper"></div>
+      </div>
+      <div class="recommend_container">
+        <div id="recommendWrapper"></div>
       </div>
     </div>
 
@@ -72,11 +74,13 @@
           <button id="FS-button"class="main__btn"><a href="#">Back To Home</a></button>
         </div>
         <div class="main__img--container">
-          <div class="main__img--card" id="card-2">
-            <i class="fas fa-users"></i>
+          <iframe src="" frameborder="0" id="video"></iframe>
+          <!-- <div class="main__img--card" id="card-2"> -->
           </div>
         </div>
-        <button id="SM-button"class="main__btn"><a href="#">Back To Home</a></button>
+        <div id="buttonHolder">
+          <button id="SM-button"class="main__btn"><a href="#">Back To Home</a></button>
+        </div>
       </div>
     </div>
   </body>
