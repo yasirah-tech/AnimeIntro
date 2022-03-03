@@ -7,10 +7,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const iframe = document.getElementById("video");
   const recommended = document.getElementById("recommendation");
   const top10Ani = document.getElementById("top-10-anime");
-  const heroContainer = document.getElementById("hero__container");
   const recommendHolder = document.getElementById("recommendWrapper");
   const searchHolder = document.getElementById("searchWrapper");
-  const animeInput = document.getElementById("anime-name");
   const animeSubmitButton = document.getElementById("anime-submit");
   const darkOrLight = document.getElementById("dark-light")
   // Display Mobile Menu
@@ -19,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     menuLinks.classList.toggle("active");
   };
 
+
 function toggleLight (){
   const element = document.body
   element.classList.toggle("light-mode")
@@ -26,8 +25,6 @@ function toggleLight (){
 darkOrLight.addEventListener("click", ()=>{
   toggleLight()
 })
-
-
 
   //builds cards that ref to trailers on click
   function cardBuilderV1(results, divToAppend, idx) {
@@ -93,6 +90,7 @@ darkOrLight.addEventListener("click", ()=>{
     recommendHolder.style.display = "none";
     cardWrapper.style.display = "none";
     const animeInputValue = document.getElementById("anime-name").value;
+    console.log(animeInputValue);
     searchHolder.style.display = "flex";
     top10Ani.innerHTML = "YOUR SEARCH RESULTS ARE:";
     let url = `https://api.jikan.moe/v4/anime?q=${animeInputValue}`;
