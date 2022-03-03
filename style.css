@@ -29,40 +29,39 @@ p {
 }
 
 #learn-more-buttons {
-background-color: #ff8177;;
-padding:2px 14px;
-/* background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%); */
-border-radius: 5px;
-box-shadow: none;
-border-color: black;
-color: black;
-font-family: "Roboto", sans-serif;
-cursor: pointer;
+  background-color: #ff8177;
+  padding: 2px 14px;
+  /* background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%); */
+  border-radius: 5px;
+  box-shadow: none;
+  border-color: black;
+  color: black;
+  font-family: "Roboto", sans-serif;
 }
 
-#learn-more-buttons:hover{
-color: black;
-background-color: #ffffff;
-
-}
-
-#reccommended-buttons{
-  background-color: #ff8177;;
-padding:2px 14px;
-/* background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%); */
-border-radius: 5px;
-box-shadow: none;
-border-color: black;
-color: black;
-font-family: "Roboto", sans-serif;
-cursor: pointer;
-}
-
-#reccommended-buttons:hover{
+#learn-more-buttons:hover {
   color: black;
   background-color: #ffffff;
-  
-  }
+  cursor: pointer;
+}
+
+#reccommended-buttons {
+  background-color: #ff8177;
+  padding: 2px 14px;
+  /* background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%); */
+  border-radius: 5px;
+  box-shadow: none;
+  border-color: black;
+  color: black;
+  font-family: "Roboto", sans-serif;
+}
+
+#reccommended-buttons:hover {
+  color: black;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
 #anime-submit {
   display: inline-block;
   padding: 2px 14px;

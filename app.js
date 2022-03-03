@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const recommendHolder = document.getElementById("recommendWrapper");
   const searchHolder = document.getElementById("searchWrapper");
   const animeSubmitButton = document.getElementById("anime-submit");
-  const submittedAnimeName = document.getElementById("anime-name")
-  submittedAnimeName.addEventListener("click", (e)=>{
-    e.preventDefault()
-  })
+  const submittedAnimeName = document.getElementById("anime-name");
+  submittedAnimeName.addEventListener("click", (e) => {
+    e.preventDefault();
+  });
   // Display Mobile Menu
   const mobileMenu = () => {
     menu.classList.toggle("is-active");
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let para = document.createElement("p");
     para.innerHTML = `${anime.synopsis}`;
     let button = document.createElement("button");
-    button.id = "learn-more-buttons"
+    button.id = "learn-more-buttons";
     button.type = button;
     let anchor = document.createElement("a");
     button.innerHTML = "LEARN MORE";
@@ -51,7 +51,8 @@ document.addEventListener("DOMContentLoaded", function () {
       animeName.innerHTML = anime.title;
       animeSynopsis.innerHTML = anime.synopsis;
       if (anime.trailer.embed_url === null) {
-        iframe.src = "https://t3.ftcdn.net/jpg/03/58/95/08/360_F_358950809_UN1NpY2OCUxAqtjElFxkTkRjWcqbGjta.jpg";
+        iframe.src =
+          "https://t3.ftcdn.net/jpg/03/58/95/08/360_F_358950809_UN1NpY2OCUxAqtjElFxkTkRjWcqbGjta.jpg";
       } else iframe.src = anime.trailer.embed_url;
     });
   }
@@ -68,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.type = button;
     let anchor = document.createElement("a");
     button.innerHTML = "LEARN MORE";
-    button.id = "reccommended-buttons"
+    button.id = "reccommended-buttons";
     img.className = "img-size";
     cardDetails.append(img);
     cardDetails.append(title);
@@ -100,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
           cardBuilderV1(results, searchHolder, i);
         }
       })
-      .catch(error => alert(error));
+      .catch((error) => alert(error));
   });
 
   // set a flag for default load in top10 anime
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
             cardBuilderV2(results, recommendHolder, i);
           }
         })
-        .catch(error => alert(error));
+        .catch((error) => alert(error));
     } else {
       top10 = true;
       recommended.innerHTML = "Recommended";
