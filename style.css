@@ -16,6 +16,35 @@ p {
   -webkit-box-orient: vertical;
 }
 
+.cursor-center {
+  text-align: center;
+}
+#anime-submit{
+display:inline-block;
+padding: 2px 14px;
+border:0.1em solid #FFFFFF;
+margin:0 0.3em 0.3em 0;
+border-radius:0.12em;
+box-sizing: border-box;
+text-decoration:none;
+font-family:'Roboto',sans-serif;
+font-weight:300;
+background-color: turquoise;
+color:black;
+text-align:start;
+/* height: 10px;
+width: 10px; */
+transition: all 0.2s;
+}
+#anime-submit:hover{
+  color:#000000;
+  background-color:#FFFFFF;
+  }
+#submit-alignment{
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
 #anime-clicked-synopsis {
   width: 90%;
   overflow-y: scroll;

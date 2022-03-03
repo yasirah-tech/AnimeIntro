@@ -10,7 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const recommendHolder = document.getElementById("recommendWrapper");
   const searchHolder = document.getElementById("searchWrapper");
   const animeSubmitButton = document.getElementById("anime-submit");
-
+  const submittedAnimeName = document.getElementById("anime-name")
+  submittedAnimeName.addEventListener("click", (e)=>{
+    e.preventDefault()
+  })
   // Display Mobile Menu
   const mobileMenu = () => {
     menu.classList.toggle("is-active");
@@ -76,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // search for anime from search bar
+
   animeSubmitButton.addEventListener("click", (e) => {
     e.preventDefault();
     recommendHolder.style.display = "none";
