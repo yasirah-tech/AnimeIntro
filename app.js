@@ -49,7 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
       anchor.href = "#anime-clicked-synopsis";
       animeName.innerHTML = anime.title;
       animeSynopsis.innerHTML = anime.synopsis;
-      iframe.src = anime.trailer.embed_url;
+      if (anime.trailer.embed_url === null) {
+        iframe.src = "https://t3.ftcdn.net/jpg/03/58/95/08/360_F_358950809_UN1NpY2OCUxAqtjElFxkTkRjWcqbGjta.jpg";
+      } else iframe.src = anime.trailer.embed_url;
     });
   }
 
@@ -95,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < results.data.length; i++) {
           cardBuilderV1(results, searchHolder, i);
         }
-      });
+      })
+      .catch(error => alert(error));
   });
 
   // set a flag for default load in top10 anime
@@ -132,7 +135,8 @@ document.addEventListener("DOMContentLoaded", function () {
           for (let i = 0; i < 25; i++) {
             cardBuilderV2(results, recommendHolder, i);
           }
-        });
+        })
+        .catch(error => alert(error));
     } else {
       top10 = true;
       recommended.innerHTML = "Recommended";
