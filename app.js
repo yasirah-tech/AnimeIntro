@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const animeInputValue = document.getElementById("anime-name").value;
     searchHolder.style.display = "flex";
     top10Ani.innerHTML = "YOUR SEARCH RESULTS ARE:";
-    // DELETE AFTER
+    // DELETE AFTER1
     let url = `https://api.jikan.moe/v4/anime?q=${animeInputValue}`;
     // DELETE AFTER
     fetch(url)
