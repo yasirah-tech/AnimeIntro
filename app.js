@@ -18,6 +18,65 @@ document.addEventListener("DOMContentLoaded", function () {
     menuLinks.classList.toggle("active");
   };
 
+  //builds cards that ref to trailers on click
+  function cardBuilderV1(results, divToAppend, idx) {
+    let anime = results.data[idx];
+    let cardDetails = document.createElement("div");
+    let title = document.createElement("h5");
+    title.innerHTML = `${anime.title}`;
+    let img = document.createElement("img");
+    img.src = `${anime.images.jpg.large_image_url}`;
+    let para = document.createElement("p");
+    para.innerHTML = `${anime.synopsis}`;
+    let button = document.createElement("button");
+    button.type = button;
+    let anchor = document.createElement("a");
+    button.innerHTML = "LEARN MORE";
+    img.className = "img-size";
+    cardDetails.append(title);
+    cardDetails.append(img);
+    cardDetails.append(para);
+    anchor.append(button);
+    cardDetails.append(anchor);
+    cardDetails.style.margin = "10px";
+    divToAppend.append(cardDetails);
+    button.addEventListener("click", () => {
+      let animeName = document.getElementById("learMore-of-anime");
+      let animeSynopsis = document.getElementById("anime-clicked-synopsis");
+      animeInfo.style.display = "block";
+      anchor.href = "#anime-clicked-synopsis";
+      animeName.innerHTML = anime.title;
+      animeSynopsis.innerHTML = anime.synopsis;
+      iframe.src = anime.trailer.embed_url;
+    });
+  }
+
+  // create recommended cards that link to myanimeList
+  function cardBuilderV2(results, divToAppend, idx) {
+    let anime = results.data[idx].entry[1];
+    let cardDetails = document.createElement("div");
+    let title = document.createElement("h3");
+    title.innerHTML = `${anime.title}`;
+    let img = document.createElement("img");
+    img.src = `${anime.images.jpg.large_image_url}`;
+    let button = document.createElement("button");
+    button.type = button;
+    let anchor = document.createElement("a");
+    button.innerHTML = "LEARN MORE";
+    img.className = "img-size";
+    cardDetails.append(img);
+    cardDetails.append(title);
+    anchor.append(button);
+    cardDetails.append(anchor);
+    cardDetails.style.margin = "10px";
+    divToAppend.append(cardDetails);
+    button.addEventListener("click", () => {
+      anchor.target = "blank";
+      anchor.href = anime.url;
+    });
+  }
+
+  // search for anime from search bar
   animeSubmitButton.addEventListener("click", (e) => {
     e.preventDefault();
     recommendHolder.style.display = "none";
@@ -25,46 +84,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const animeInputValue = document.getElementById("anime-name").value;
     searchHolder.style.display = "flex";
     top10Ani.innerHTML = "YOUR SEARCH RESULTS ARE:";
-    // DELETE AFTER1
     let url = `https://api.jikan.moe/v4/anime?q=${animeInputValue}`;
-    // DELETE AFTER
     fetch(url)
       .then((response) => response.json())
       .then((results) => {
         for (let i = 0; i < results.data.length; i++) {
-          let anime = results.data[i];
-          let cardDetails = document.createElement("div");
-          let title = document.createElement("h5");
-          title.innerHTML = `${anime.title}`;
-          let img = document.createElement("img");
-          img.src = `${anime.images.jpg.large_image_url}`;
-          let para = document.createElement("p");
-          para.innerHTML = `${anime.synopsis}`;
-          let button = document.createElement("button");
-          button.type = button;
-          let anchor = document.createElement("a");
-          button.innerHTML = "LEARN MORE";
-          img.className = "img-size";
-          cardDetails.append(title);
-          cardDetails.append(img);
-          cardDetails.append(para);
-          anchor.append(button);
-          cardDetails.append(anchor);
-          cardDetails.style.margin = "10px";
-          searchHolder.append(cardDetails);
-          button.addEventListener("click", () => {
-            let animeName = document.getElementById("learMore-of-anime");
-            let animeSynopsis = document.getElementById("anime-clicked-synopsis");
-            animeInfo.style.display = "block";
-            anchor.href = "#anime-clicked-synopsis";
-            animeName.innerHTML = anime.title;
-            animeSynopsis.innerHTML = anime.synopsis;
-            iframe.src = anime.trailer.embed_url;
-          });
+          cardBuilderV1(results, searchHolder, i);
         }
       });
   });
 
+  // set a flag for default load in top10 anime
   let top10 = true;
   if (top10) {
     recommendHolder.style.display = "none";
@@ -73,44 +103,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   menu.addEventListener("click", mobileMenu);
 
+  // fetch top 10 anime
   fetch(`https://api.jikan.moe/v4/top/anime`)
     .then((response) => response.json())
     .then((results) => {
       for (let i = 0; i < 10; i++) {
-        let anime = results.data[i];
-        let cardDetails = document.createElement("div");
-        let title = document.createElement("h5");
-        title.innerHTML = `${anime.title}`;
-        let img = document.createElement("img");
-        img.src = `${anime.images.jpg.large_image_url}`;
-        let para = document.createElement("p");
-        para.innerHTML = `${anime.synopsis}`;
-        let button = document.createElement("button");
-        button.type = button;
-        let anchor = document.createElement("a");
-        button.innerHTML = "LEARN MORE";
-        img.className = "img-size";
-        cardDetails.append(title);
-        cardDetails.append(img);
-        cardDetails.append(para);
-        anchor.append(button);
-        cardDetails.append(anchor);
-        cardDetails.style.margin = "10px";
-        cardWrapper.append(cardDetails);
-        button.addEventListener("click", () => {
-          let animeName = document.getElementById("learMore-of-anime");
-          let animeSynopsis = document.getElementById("anime-clicked-synopsis");
-          animeInfo.style.display = "block";
-          anchor.href = "#anime-clicked-synopsis";
-          animeName.innerHTML = anime.title;
-          animeSynopsis.innerHTML = anime.synopsis;
-          iframe.src = anime.trailer.embed_url;
-        });
+        cardBuilderV1(results, cardWrapper, i);
       }
     })
     .catch((error) => alert(error));
-  // let documentBody = document.getElementsByTagName("body")
 
+  // Toggles between recommended anime and top 10
   recommended.addEventListener("click", () => {
     if (top10) {
       top10 = false;
@@ -123,27 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((response) => response.json())
         .then((results) => {
           for (let i = 0; i < 25; i++) {
-            let anime = results.data[i].entry[1];
-            let cardDetails = document.createElement("div");
-            let title = document.createElement("h3");
-            title.innerHTML = `${anime.title}`;
-            let img = document.createElement("img");
-            img.src = `${anime.images.jpg.large_image_url}`;
-            let button = document.createElement("button");
-            button.type = button;
-            let anchor = document.createElement("a");
-            button.innerHTML = "LEARN MORE";
-            img.className = "img-size";
-            cardDetails.append(img);
-            cardDetails.append(title);
-            anchor.append(button);
-            cardDetails.append(anchor);
-            cardDetails.style.margin = "10px";
-            recommendHolder.append(cardDetails);
-            button.addEventListener("click", () => {
-              anchor.target = "blank";
-              anchor.href = anime.url;
-            });
+            cardBuilderV2(results, recommendHolder, i);
           }
         });
     } else {
