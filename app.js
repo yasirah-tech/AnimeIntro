@@ -12,11 +12,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchHolder = document.getElementById("searchWrapper");
   const animeInput = document.getElementById("anime-name");
   const animeSubmitButton = document.getElementById("anime-submit");
+  const darkOrLight = document.getElementById("dark-light")
   // Display Mobile Menu
   const mobileMenu = () => {
     menu.classList.toggle("is-active");
     menuLinks.classList.toggle("active");
   };
+
+function toggleLight (){
+  const element = document.body
+  element.classList.toggle("light-mode")
+}
+darkOrLight.addEventListener("click", ()=>{
+  toggleLight()
+})
+
+
 
   //builds cards that ref to trailers on click
   function cardBuilderV1(results, divToAppend, idx) {

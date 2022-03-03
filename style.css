@@ -6,6 +6,12 @@
   scroll-behavior: smooth;
 }
 
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+
 p {
   overflow: hidden;
   width: 300px;
