@@ -10,23 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const recommendHolder = document.getElementById("recommendWrapper");
   const searchHolder = document.getElementById("searchWrapper");
   const animeSubmitButton = document.getElementById("anime-submit");
-  const darkOrLight = document.getElementById("dark-light")
+
   // Display Mobile Menu
   const mobileMenu = () => {
     menu.classList.toggle("is-active");
     menuLinks.classList.toggle("active");
   };
 
-
-function toggleLight (){
-  const element = document.body
-  element.classList.toggle("light-mode")
-}
-darkOrLight.addEventListener("click", ()=>{
-  toggleLight()
-})
-
-  //builds cards that ref to trailers on click
+  // builds cards that ref to trailers on click
   function cardBuilderV1(results, divToAppend, idx) {
     let anime = results.data[idx];
     let cardDetails = document.createElement("div");
@@ -156,7 +147,6 @@ darkOrLight.addEventListener("click", ()=>{
     let scrollPos = window.scrollY;
 
     // adds 'highlight' class to my menu items
-
     if (window.innerWidth > 960 && scrollPos < 600) {
       homeMenu.classList.add("highlight");
       aboutMenu.classList.remove("highlight");
