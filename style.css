@@ -298,6 +298,21 @@ p {
   flex-shrink: 0;
 }
 
+#searchWrapper {
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  justify-content: stretch;
+}
+
+#searchWrapper > * {
+  flex-basis: 20rem;
+  flex-shrink: 0;
+}
+
 #animeInfo {
   display: none;
 }
