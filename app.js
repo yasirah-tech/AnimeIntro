@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let para = document.createElement("p");
     para.innerHTML = `${anime.synopsis}`;
     let button = document.createElement("button");
+    button.id = "learn-more-buttons"
     button.type = button;
     let anchor = document.createElement("a");
     button.innerHTML = "LEARN MORE";
@@ -67,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     button.type = button;
     let anchor = document.createElement("a");
     button.innerHTML = "LEARN MORE";
+    button.id = "reccommended-buttons"
     img.className = "img-size";
     cardDetails.append(img);
     cardDetails.append(title);

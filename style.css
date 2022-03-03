@@ -28,28 +28,64 @@ p {
   padding-top: 50px;
 }
 
-#anime-submit{
-display:inline-block;
-padding: 2px 14px;
-border:0.1em solid #FFFFFF;
-margin:0 0.3em 0.3em 0;
-border-radius:0.12em;
-box-sizing: border-box;
-text-decoration:none;
-font-family:'Roboto',sans-serif;
-font-weight:300;
-background-color: turquoise;
-color:black;
-text-align:start;
-/* height: 10px;
-width: 10px; */
-transition: all 0.2s;
+#learn-more-buttons {
+background-color: #ff8177;;
+padding:2px 14px;
+/* background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%); */
+border-radius: 5px;
+box-shadow: none;
+border-color: black;
+color: black;
+font-family: "Roboto", sans-serif;
+cursor: pointer;
 }
-#anime-submit:hover{
-  color:#000000;
-  background-color:#FFFFFF;
+
+#learn-more-buttons:hover{
+color: black;
+background-color: #ffffff;
+
+}
+
+#reccommended-buttons{
+  background-color: #ff8177;;
+padding:2px 14px;
+/* background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%); */
+border-radius: 5px;
+box-shadow: none;
+border-color: black;
+color: black;
+font-family: "Roboto", sans-serif;
+cursor: pointer;
+}
+
+#reccommended-buttons:hover{
+  color: black;
+  background-color: #ffffff;
+  
   }
-#submit-alignment{
+#anime-submit {
+  display: inline-block;
+  padding: 2px 14px;
+  border: 0.1em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  background-color: turquoise;
+  color: black;
+  text-align: start;
+  /* height: 10px;
+width: 10px; */
+  transition: all 0.2s;
+}
+#anime-submit:hover {
+  color: #000000;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+#submit-alignment {
   display: flex;
   justify-content: center;
   margin-top: 5px;
@@ -315,7 +351,6 @@ transition: all 0.2s;
   justify-content: stretch;
 }
 
-
 #wrapper > * {
   flex-basis: 20rem;
   flex-shrink: 0;
@@ -533,7 +568,7 @@ transition: all 0.2s;
 }
 
 /* Mobile Responsive */
-@media screen  and (max-width: 960px) {
+@media screen and (max-width: 960px) {
   #searchBar {
     display: flex;
     flex-direction: column;
