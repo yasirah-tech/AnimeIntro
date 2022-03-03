@@ -32,6 +32,13 @@
           <li class="navbar__item">
             <a href="#about" class="navbar__links" id="about-page">About</a>
           </li>
+          <li>
+            <form>
+              <input  id="anime-name"type="text" placeholder="Anime name"/>
+              <br>
+              <input id="anime-submit" onClick="ClearFields();" type="submit" value="submit"/>
+          </form>
+          </li>
           <li class="navbar__btn">
             <a href="#recommendation" class="button" id="recommendation">Recommended</a>
           </li>
@@ -44,8 +51,14 @@
       <div class="hero__container">
         <div class="card-wrapper" id ="wrapper"></div>
       </div>
+      <!-- <div class="recommend_container">
+        <div id="recommendWrapper"></div>
+      </div> -->
       <div class="recommend_container">
         <div id="recommendWrapper"></div>
+      </div>
+      <div class="search-container">
+        <div id="searchWrapper"></div>
       </div>
     </div>
 

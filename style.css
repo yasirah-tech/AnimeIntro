@@ -255,6 +255,17 @@ p {
   text-align: center;
   padding: 30px;
 }
+.search-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 90%;
+  text-align: center;
+  padding: 30px;
+}
 
 #wrapper {
   width: 100%;

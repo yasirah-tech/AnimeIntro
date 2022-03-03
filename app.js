@@ -9,12 +9,59 @@ document.addEventListener("DOMContentLoaded", function () {
   const top10Ani = document.getElementById("top-10-anime");
   const heroContainer = document.getElementById("hero__container");
   const recommendHolder = document.getElementById("recommendWrapper");
-
+  const searchHolder = document.getElementById("searchWrapper");
+  const animeInput = document.getElementById("anime-name");
+  const animeSubmitButton = document.getElementById("anime-submit");
   // Display Mobile Menu
   const mobileMenu = () => {
     menu.classList.toggle("is-active");
     menuLinks.classList.toggle("active");
   };
+
+  animeSubmitButton.addEventListener("click", (e) => {
+    // console.log(stringed)
+    // animeInputValue.value = " "
+    e.preventDefault();
+    const animeInputValue = document
+      .getElementById("anime-name")
+      .value.replace(/\s/g, "");
+    console.log(animeInputValue);
+    cardWrapper.style.display = "none";
+    searchHolder.style.display = "flex"
+    top10Ani.innerHTML = "YOUR SEARCH RESULTS ARE:";
+    // DELETE AFTER
+    let url = `https://api.jikan.moe/v4/anime?q=${animeInputValue}`;
+    console.log(url, "url-look");
+    // DELETE AFTER
+    fetch(`https://api.jikan.moe/v4/anime?q=${animeInputValue}`)
+      .then((response) => response.json())
+      .then((results) => {
+        for (let i = 0; i < results.data.length; i++) {
+          let anime = results.data[i];
+          // console.log(anime, "anime names")
+          let cardDetails = document.createElement("div");
+            let title = document.createElement("h3");
+            title.innerHTML = `${anime.title}`;
+            let img = document.createElement("img");
+            img.src = `${anime.images.jpg.large_image_url}`;
+            let button = document.createElement("button");
+            button.type = button;
+            let anchor = document.createElement("a");
+            button.innerHTML = "LEARN MORE";
+            img.className = "img-size";
+            cardDetails.append(img);
+            cardDetails.append(title);
+            anchor.append(button);
+            cardDetails.append(anchor);
+            cardDetails.style.margin = "10px";
+            searchHolder.append(cardDetails);
+            button.addEventListener("click", () => {
+              anchor.target = "blank";
+              anchor.href = anime.url;
+        })
+        }
+      });
+  });
 
   let top10 = true;
   if (top10) {
@@ -22,6 +69,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   menu.addEventListener("click", mobileMenu);
+
+  animeInput.addEventListener("keyup", function (event) {
+    // Number 13 is the "Enter" key on the keyboard
+    if (event.code === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      console.log("hi");
+      // Trigger the button element with a click
+      document.getElementById("myBtn").click();
+    }
+  });
 
   fetch(`https://api.jikan.moe/v4/top/anime`)
     .then((response) => response.json())
@@ -90,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
             cardDetails.style.margin = "10px";
             recommendHolder.append(cardDetails);
             button.addEventListener("click", () => {
-              anchor.target = "blank"
+              anchor.target = "blank";
               anchor.href = anime.url;
             });
           }
@@ -128,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    if ((elem && window.innerWIdth < 960 && scrollPos < 600) || elem) {
+    if ((elem && window.innerWidth < 960 && scrollPos < 600) || elem) {
       elem.classList.remove("highlight");
     }
   };
