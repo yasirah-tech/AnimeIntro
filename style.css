@@ -18,7 +18,7 @@ p {
 
 #anime-clicked-synopsis {
   width: 90%;
-  overflow: auto;
+  overflow-y: scroll;
   text-align: center;
 }
 .img-size {
