@@ -19,46 +19,48 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   animeSubmitButton.addEventListener("click", (e) => {
-    // console.log(stringed)
-    // animeInputValue.value = " "
     e.preventDefault();
-    const animeInputValue = document
-      .getElementById("anime-name")
-      .value.replace(/\s/g, "");
-    console.log(animeInputValue);
+    recommendHolder.style.display = "none";
     cardWrapper.style.display = "none";
-    searchHolder.style.display = "flex"
+    const animeInputValue = document.getElementById("anime-name").value;
+    searchHolder.style.display = "flex";
     top10Ani.innerHTML = "YOUR SEARCH RESULTS ARE:";
     // DELETE AFTER
     let url = `https://api.jikan.moe/v4/anime?q=${animeInputValue}`;
-    console.log(url, "url-look");
     // DELETE AFTER
-    fetch(`https://api.jikan.moe/v4/anime?q=${animeInputValue}`)
+    fetch(url)
       .then((response) => response.json())
       .then((results) => {
         for (let i = 0; i < results.data.length; i++) {
           let anime = results.data[i];
-          // console.log(anime, "anime names")
           let cardDetails = document.createElement("div");
-            let title = document.createElement("h3");
-            title.innerHTML = `${anime.title}`;
-            let img = document.createElement("img");
-            img.src = `${anime.images.jpg.large_image_url}`;
-            let button = document.createElement("button");
-            button.type = button;
-            let anchor = document.createElement("a");
-            button.innerHTML = "LEARN MORE";
-            img.className = "img-size";
-            cardDetails.append(img);
-            cardDetails.append(title);
-            anchor.append(button);
-            cardDetails.append(anchor);
-            cardDetails.style.margin = "10px";
-            searchHolder.append(cardDetails);
-            button.addEventListener("click", () => {
-              anchor.target = "blank";
-              anchor.href = anime.url;
-        })
+          let title = document.createElement("h5");
+          title.innerHTML = `${anime.title}`;
+          let img = document.createElement("img");
+          img.src = `${anime.images.jpg.large_image_url}`;
+          let para = document.createElement("p");
+          para.innerHTML = `${anime.synopsis}`;
+          let button = document.createElement("button");
+          button.type = button;
+          let anchor = document.createElement("a");
+          button.innerHTML = "LEARN MORE";
+          img.className = "img-size";
+          cardDetails.append(title);
+          cardDetails.append(img);
+          cardDetails.append(para);
+          anchor.append(button);
+          cardDetails.append(anchor);
+          cardDetails.style.margin = "10px";
+          searchHolder.append(cardDetails);
+          button.addEventListener("click", () => {
+            let animeName = document.getElementById("learMore-of-anime");
+            let animeSynopsis = document.getElementById("anime-clicked-synopsis");
+            animeInfo.style.display = "block";
+            anchor.href = "#anime-clicked-synopsis";
+            animeName.innerHTML = anime.title;
+            animeSynopsis.innerHTML = anime.synopsis;
+            iframe.src = anime.trailer.embed_url;
+          });
         }
       });
   });
@@ -66,20 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
   let top10 = true;
   if (top10) {
     recommendHolder.style.display = "none";
+    searchHolder.style.display = "none";
   }
 
   menu.addEventListener("click", mobileMenu);
-
-  animeInput.addEventListener("keyup", function (event) {
-    // Number 13 is the "Enter" key on the keyboard
-    if (event.code === "Enter") {
-      // Cancel the default action, if needed
-      event.preventDefault();
-      console.log("hi");
-      // Trigger the button element with a click
-      document.getElementById("myBtn").click();
-    }
-  });
 
   fetch(`https://api.jikan.moe/v4/top/anime`)
     .then((response) => response.json())
@@ -125,6 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
       recommended.innerHTML = "Top 10 Anime";
       top10Ani.innerHTML = "Recommended Anime Films";
       cardWrapper.style.display = "none";
+      searchHolder.style.display = "none";
       recommendHolder.style.display = "flex";
       fetch("https://api.jikan.moe/v4/recommendations/anime")
         .then((response) => response.json())
@@ -156,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       top10 = true;
       recommended.innerHTML = "Recommended";
+      top10Ani.innerHTML = "Top 10 Anime Films";
       recommendHolder.style.display = "none";
       cardWrapper.style.display = "flex";
     }
