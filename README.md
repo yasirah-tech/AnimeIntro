@@ -1,1 +1,1 @@
-# Anime Intro (AI)
+# AnimeIntro (AI)
